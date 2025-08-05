@@ -1,4 +1,5 @@
 import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack'
 // import { SafeAreaView, Button, StyleSheet, Text } from 'react-native';
 // import { useTranslation } from 'react-i18next';
 // import LinearGradient from 'react-native-linear-gradient';
@@ -6,6 +7,11 @@ import './i18n';
 // import Logo from './src/components/Logo';
 // import { Colors } from './src/styles/colors'; // ← aqui importa suas variáveis
 import Home from './src/screens/Home';
+import { View } from 'react-native';
+import Main from './src/screens/Main';
+import { NavigationContainer } from '@react-navigation/native';
+
+const Stack = createStackNavigator()
 
 export default function App() {
   // const { t, i18n } = useTranslation();
@@ -15,7 +21,12 @@ export default function App() {
   // }
 
   return (
-    <Home />
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+        <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 
 //   return (

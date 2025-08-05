@@ -1,10 +1,15 @@
 import React from 'react'
-import { View, Text, Button, SafeAreaView, StyleSheet, ImageBackground } from 'react-native'
+import { SafeAreaView, StyleSheet, ImageBackground } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { Colors } from '../styles/colors'
 import Logo from '../components/Logo'
+import Button from '../components/Button'
+import { useTranslation } from 'react-i18next'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
-export default function Home() {
+export default function Home({ navigation }: any) {
+  const { t } = useTranslation()
+
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
@@ -18,10 +23,15 @@ export default function Home() {
           style={styles.gradient}
         >
           <Logo showContainer />
+          <Button
+            title={t('createPassphrase.buttonTitle')}
+            onPress={() => navigation.navigate('Main')}
+            prefix={<MaterialIcons name="key" size={30} />}
+          />
         </LinearGradient>
       </ImageBackground>
     </SafeAreaView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -37,7 +47,9 @@ const styles = StyleSheet.create({
   gradient: {
     flex: 1,
     width: "100%",
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'space-between', 
+    paddingTop: 30,
+    paddingBottom: 80,
   },
-});
+})
